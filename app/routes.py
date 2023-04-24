@@ -10,7 +10,7 @@ app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 @app.route("/")
 def index():
     books = Book.query.all()
-    return render_template("layout.html", books=books)
+    return render_template("index.html", books=books)
 
 
 @app.route("/book/list", methods=["GET"])
@@ -34,7 +34,7 @@ def delete(isbn):
         abort(404)
     db.session.delete(book)
     db.session.commit()
-    return redirect(url_for("layout"))
+    return redirect(url_for("index"))
 
 
 @app.route('/add_book/', methods=['POST'])
@@ -48,7 +48,7 @@ def add_book():
     )
     db.session.add(book)
     db.session.commit()
-    return redirect(url_for("layout"))
+    return redirect(url_for("index"))
 
 
 @app.route('/update_book/<int:isbn>', methods=['POST'])
@@ -62,7 +62,7 @@ def update_book(isbn):
     book.author = request.form.get('author', book.author)
     book.price = request.form.get('price', book.price)
     db.session.commit()
-    return redirect(url_for("layout"))
+    return redirect(url_for("index"))
 @app.route("/home")
 def home():
     return render_template('home.html', posts=User)
