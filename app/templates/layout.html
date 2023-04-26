@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
-
     {% if title %}
         <title>mybook_catalog - {{ title }}</title>
     {% else %}
@@ -81,9 +80,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="author" class="col-xs-2 control-label">Price</label>
+                        <label for="author" class="col-xs-2 control-label">Geners</label>
                         <div class="col-xs-10">
-                            <input type="number" class="form-control" name="price" placeholder="Price" />
+                            <input type="text" class="form-control" name="Geners" placeholder="Geners" />
                         </div>
                     </div>
                 </div>
@@ -105,7 +104,7 @@
                     <th>ISBN</th>
                     <th>Author</th>
                     <th>Title</th>
-                    <th>Price</th>
+                    <th>Geners</th>
                     <th colspan="2">Action</th>
                 </tr>
             </thead>
@@ -115,7 +114,7 @@
                     <td>{{ book.isbn }}</td>
                     <td>{{ book.author }}</td>
                     <td>{{ book.title }}</td>
-                    <td>{{ book.price }}</td>
+                    <td>{{ book.Geners }}</td>
                     <td><button type="button" class="btn btn-success" data-toggle="modal"
                             data-target="#update_book_{{book['isbn']}}">Update</button></td>
 
@@ -147,10 +146,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="author" class="col-xs-2 control-label">Price</label>
+                                            <label for="author" class="col-xs-2 control-label">Geners</label>
                                             <div class="col-xs-10">
-                                                <input type="number" class="form-control" name="price"
-                                                    value="{{book['price']}}" />
+                                                <input type="text" class="form-control" name="Geners"
+                                                    value="{{book['Geners']}}" />
                                             </div>
                                         </div>
                                     </div>
