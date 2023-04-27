@@ -25,7 +25,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
+              <a class="nav-item nav-link" href="{{ url_for('home') }}">home</a>
               <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
             </div>
             <!-- Navbar Right Side -->
@@ -58,7 +58,7 @@
         </div>
         {% block page_content %}
 <div class="starter-template">
-    <h1>Welcome to mybook catalog!</h1>
+    <h1>WELCOME!</h1>
 </div>
 <button type="button" data-toggle="modal" class="btn btn-lg btn-primary" data-target="#insert_book">Add a book</button>
 
@@ -84,6 +84,12 @@
                             <input type="text" class="form-control" name="title" placeholder="Title" />
                         </div>
                     </div>
+                  <div class="form-group row">
+                    <label for="author" class="col-xs-2 control-label">content</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="content" placeholder="content" />
+                    </div>
+                </div>
                     <div class="form-group row">
                         <label for="author" class="col-xs-2 control-label">Geners</label>
                         <div class="col-xs-10">
@@ -109,6 +115,7 @@
                     <th>ISBN</th>
                     <th>Author</th>
                     <th>Title</th>
+                    <th>content</th>
                     <th>Geners</th>
                     <th colspan="2">Action</th>
                 </tr>
@@ -119,6 +126,7 @@
                     <td>{{ book.isbn }}</td>
                     <td>{{ book.author }}</td>
                     <td>{{ book.title }}</td>
+                    <td>{{ book.content }}</td>
                     <td>{{ book.Geners }}</td>
                     <td><button type="button" class="btn btn-success" data-toggle="modal"
                             data-target="#update_book_{{book['isbn']}}">Update</button></td>
@@ -150,6 +158,13 @@
                                                     value="{{book['title']}}" />
                                             </div>
                                         </div>
+                                      <div class="form-group row">
+                                        <label for="author" class="col-xs-2 control-label">content</label>
+                                        <div class="col-xs-10">
+                                            <input type="text" class="form-control" name="content"
+                                                value="{{book['content']}}" />
+                                        </div>
+                                    </div>
                                         <div class="form-group row">
                                             <label for="author" class="col-xs-2 control-label">Geners</label>
                                             <div class="col-xs-10">

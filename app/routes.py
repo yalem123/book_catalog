@@ -9,20 +9,6 @@ from flask import jsonify, redirect, request, abort, render_template, url_for,fl
 from flask_login import login_user, current_user, logout_user, login_required
 
 
-books = [
-    {
-        'author': 'leo tolstoy',
-        'title': 'anna karenina',
-        'Geners': 'novel',
-        
-    },
-    {
-        'author': 'Agatha Christie',
-        'title': 'Murder on the Orient Express',
-        'Geners': 'crime detective',
-        
-    }
-]
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
@@ -65,7 +51,8 @@ def add_book():
     book = Book(
         title=request.form.get('title'),
         author=request.form.get('author'),
-        Geners=request.form.get('Geners')
+        Geners=request.form.get('Geners'),
+        content=request.form.get('content')
     )
     db.session.add(book)
     db.session.commit()
@@ -83,6 +70,7 @@ def update_book(isbn):
     book.title = request.form.get('title', book.title)
     book.author = request.form.get('author', book.author)
     book.Geners = request.form.get('Geners', book.Geners)
+    book.content = request.form.get('content')
     db.session.commit()
     return redirect(url_for("index"))
 
@@ -112,7 +100,7 @@ def register():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
