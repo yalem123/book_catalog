@@ -1,32 +1,14 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple HTML HomePage</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
-
-<main>
-    <div class="intro">
-      <h1>WELCOME</h1>
-      <p>book_catalog</p>
-      <a class="nav-item nav-link" href="{{ url_for('register') }}">Signup now</a>
-    </div>
-    <div class="WELCOME">
-      <div class="about-me-text">
-        <h2>About Me</h2>
-        <p>I am a web developer and I love to create websites. I am a very good developer and I am always looking for new projects. I am a very good developer and I am always looking for new projects.</p>
-      </div>
-      <img src="https://media.istockphoto.com/id/1354441996/photo/image-of-open-antique-book-on-wooden-table-with-glitter-overlay.jpg?b=1&s=170667a&w=0&k=20&c=O_VZbgONe4WTXPOEvwKYezhqFkzAXpr2g-lCdpdj5FU=" alt="me">
-      <img src="https://media.istockphoto.com/id/1354441996/photo/image-of-open-antique-book-on-wooden-table-with-glitter-overlay.jpg?b=1&s=170667a&w=0&k=20&c=O_VZbgONe4WTXPOEvwKYezhqFkzAXpr2g-lCdpdj5FU=" alt="me">
-      <img src="https://media.istockphoto.com/id/1354441996/photo/image-of-open-antique-book-on-wooden-table-with-glitter-overlay.jpg?b=1&s=170667a&w=0&k=20&c=O_VZbgONe4WTXPOEvwKYezhqFkzAXpr2g-lCdpdj5FU=" alt="me">
-      <img src="https://media.istockphoto.com/id/1354441996/photo/image-of-open-antique-book-on-wooden-table-with-glitter-overlay.jpg?b=1&s=170667a&w=0&k=20&c=O_VZbgONe4WTXPOEvwKYezhqFkzAXpr2g-lCdpdj5FU=" alt="me">
-      <a class="nav-item nav-link" href="{{ url_for('register') }}">Signup now</a>
-    </div>
-  </main>
-{% endblock %}
+    {% for Book in books %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ book.author }}</a>
+            </div>
+            <h2><a class="article-title" href="#">{{ book.title }}</a></h2>
+            <p class="article-content">{{ book.Geners }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

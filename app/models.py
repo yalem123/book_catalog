@@ -25,14 +25,10 @@ class Book(db.Model):
     Geners = db.Column(db.String(100), nullable=False)
    
     
-
-    def to_json(self):
-        return {
-            'isbn': self.isbn,
-            'author': self.author,
-            'title': self.title,
-            'Geners': self.Geners
-        }
+    def __repr__(self):
+        return f"Book('{self.isbn}', '{self.author}', '{self.title}', '{self.Geners}')"
+    
+        
 
     
        

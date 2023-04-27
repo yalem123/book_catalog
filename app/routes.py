@@ -9,6 +9,20 @@ from flask import jsonify, redirect, request, abort, render_template, url_for,fl
 from flask_login import login_user, current_user, logout_user, login_required
 
 
+books = [
+    {
+        'author': 'leo tolstoy',
+        'title': 'anna karenina',
+        'Geners': 'novel',
+        
+    },
+    {
+        'author': 'Agatha Christie',
+        'title': 'Murder on the Orient Express',
+        'Geners': 'crime detective',
+        
+    }
+]
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
@@ -33,6 +47,7 @@ def get_book(isbn):
 
 
 @app.route("/delete/<int:isbn>", methods=["POST"])
+@login_required
 def delete(isbn):
     book = Book.query.get(isbn)
     if book is None:
@@ -43,6 +58,7 @@ def delete(isbn):
 
 
 @app.route('/add_book/', methods=['POST'])
+@login_required
 def add_book():
     if not request.form:
         abort(400)
@@ -57,6 +73,7 @@ def add_book():
 
 
 @app.route('/update_book/<int:isbn>', methods=['POST'])
+@login_required
 def update_book(isbn):
     if not request.form:
         abort(400)
@@ -68,6 +85,7 @@ def update_book(isbn):
     book.Geners = request.form.get('Geners', book.Geners)
     db.session.commit()
     return redirect(url_for("index"))
+
 @app.route("/home")
 def home():
     return render_template('home.html', posts=User)
@@ -86,7 +104,7 @@ def register():
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash(f'your account has been created!', 'success')
+        flash(f'your account has been created! you can signin now', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
