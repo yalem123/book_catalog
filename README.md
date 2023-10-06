@@ -5,7 +5,7 @@ Functionalities
   authenticate user
   being able to see books added by other people
   being able to add books update books and delete books
-  retrive info from database
+  retrive information from database
 
 Environment
   python virtual environement 
